@@ -1,17 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.Events;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
-    
-    public TextMeshProUGUI ScoreText => scoreText;
-    
-    [SerializeField] private TextMeshProUGUI scoreText;
 
-    [SerializeField, Min(0)] private int score = 0;
+    public UnityEvent<int> OnScoreChanged;
+
+    private int _score = 0;
     
     private void Awake()
     {
@@ -24,29 +20,16 @@ public class ScoreManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    private void Start()
-    {
-        StartCoroutine(IncreaseScoreOverTime());
-    }
 
-    private IEnumerator IncreaseScoreOverTime()
+    public void ResetScore()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f);
-            AddScore(1);
-        }
+        _score = 0;
+        OnScoreChanged?.Invoke(_score);
     }
 
     public void AddScore(int points)
     {
-        score += points;
-        UpdateScoreUI();
-    }
-    
-    private void UpdateScoreUI()
-    {
-        scoreText.text = score.ToString();
+        _score += points;
+        OnScoreChanged?.Invoke(_score);
     }
 }

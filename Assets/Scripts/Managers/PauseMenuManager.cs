@@ -1,17 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject pausePanel;
     private bool _isPaused = false;
-
-    private void Start()
-    {
-        pausePanel.SetActive(false);
-    }
 
     public void TogglePause()
     {
@@ -20,12 +12,12 @@ public class PauseMenuManager : MonoBehaviour
         if (_isPaused)
         {
             Time.timeScale = 0.0f;
-            pausePanel.SetActive(true);
+            gameObject.SetActive(true);
         }
         else
         {
             Time.timeScale = 1.0f;
-            pausePanel.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 
@@ -38,5 +30,11 @@ public class PauseMenuManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Exit()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(0);
     }
 }

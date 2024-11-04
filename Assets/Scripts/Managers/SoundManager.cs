@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -21,12 +19,7 @@ public class SoundManager : MonoBehaviour
         }
         
         audioSource = GetComponent<AudioSource>();
-
-        if (PlayerPrefs.HasKey("SoundOn"))
-        {
-            bool soundOn = PlayerPrefs.GetInt("SoundOn") == 1;
-            SetSound(soundOn);
-        }
+        LoadSound();
     }
 
     public void SetSound(bool isOn)
@@ -42,5 +35,10 @@ public class SoundManager : MonoBehaviour
             audioSource.PlayOneShot(clickSound);
         }
     }
-    
+
+    private void LoadSound()
+    {
+        bool soundOn = PlayerPrefs.GetInt("SoundOn", 1) == 1;
+        SetSound(soundOn);
+    }
 }

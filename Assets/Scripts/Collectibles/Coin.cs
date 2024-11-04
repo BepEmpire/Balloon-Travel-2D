@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
@@ -11,6 +9,7 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             WalletManager wallet = FindObjectOfType<WalletManager>();
+            
             if (wallet != null)
             {
                 wallet.AddCoins(coinValue);
