@@ -12,6 +12,6 @@ public class PlayClickSound : MonoBehaviour
 
 	private void PlayClick()
 	{
-		SoundManager.Instance.PlayClickSound();
+		SoundManager.Instance.PlaySound("Click");
 	}
 }

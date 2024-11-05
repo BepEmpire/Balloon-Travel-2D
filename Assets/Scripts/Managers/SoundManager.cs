@@ -4,8 +4,14 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
     
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip clickSound;
+    [Header("Audio Sources")]
+    [SerializeField] private AudioSource soundEffectsSource;
+    [SerializeField] private AudioSource musicSource;
+    
+    [Header("Sound and Music Clips")]
+    [SerializeField] private AudioClip[] sounds;
+    [SerializeField] private AudioClip menuMusic;
+    [SerializeField] private AudioClip gameMusic;
     
     private void Awake()
     {
@@ -18,27 +24,74 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
         
-        audioSource = GetComponent<AudioSource>();
-        LoadSound();
+        LoadAudioSettings();
     }
 
     public void SetSound(bool isOn)
     {
-        audioSource.mute = !isOn;
+        soundEffectsSource.mute = !isOn;
         PlayerPrefs.SetInt("SoundOn", isOn ? 1 : 0);
     }
 
-    public void PlayClickSound()
+    public void PlaySound(string soundName)
     {
-        if (clickSound != null && !audioSource.mute)
+        AudioClip clip = FindAudioClipByName(soundName);
+        
+        if (clip != null && !soundEffectsSource.mute)
         {
-            audioSource.PlayOneShot(clickSound);
+            soundEffectsSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.LogWarning($"AudioClip {soundName} not found");
         }
     }
+    
+    private AudioClip FindAudioClipByName(string soundName)
+    {
+        foreach (AudioClip audioClip in sounds)
+        {
+            if (audioClip.name == soundName)
+            {
+                return audioClip;
+            }
+        }
+        
+        return null;
+    }
+    
+    public void SetMusic(bool isOn)
+    {
+        musicSource.mute = !isOn;
+        PlayerPrefs.SetInt("MusicOn", isOn ? 1 : 0);
+    }
+    
+    public void PlayMusic(string scene)
+    {
+        AudioClip musicClip = null;
 
-    private void LoadSound()
+        if (scene == "Menu Scene")
+        {
+            musicClip = menuMusic;
+        }
+        else if (scene == "Level 1")
+        {
+            musicClip = gameMusic;
+        }
+
+        if (musicClip != null && musicSource.clip != musicClip)
+        {
+            musicSource.clip = musicClip;
+            musicSource.Play();
+        }
+    }
+    
+    private void LoadAudioSettings()
     {
         bool soundOn = PlayerPrefs.GetInt("SoundOn", 1) == 1;
+        bool musicOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
+        
         SetSound(soundOn);
+        SetMusic(musicOn);
     }
 }

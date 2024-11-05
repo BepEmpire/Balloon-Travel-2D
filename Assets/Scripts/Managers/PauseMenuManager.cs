@@ -36,5 +36,6 @@ public class PauseMenuManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(0);
+        SoundManager.Instance.PlayMusic("Menu Scene");
     }
 }

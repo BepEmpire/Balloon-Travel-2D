@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -11,6 +9,8 @@ public class Item : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             ScoreManager.Instance.AddScore(scoreValue);
+            
+            SoundManager.Instance.PlaySound("Score");
             
             Destroy(gameObject);
         }
