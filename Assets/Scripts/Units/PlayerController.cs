@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -6,12 +7,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxHeight = 4.0f;
     [SerializeField] private float groundLevel = -3.9f;
     private Rigidbody2D _balloonRb;
+    
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Sprite[] _skins;
 
     private void Start()
     {
         _balloonRb = GetComponent<Rigidbody2D>();
+        
+        int skinId = SkinManager.Instance.GetCurrentSkinId();
+        _spriteRenderer.sprite = _skins[skinId];
     }
-
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && transform.position.y < maxHeight)
