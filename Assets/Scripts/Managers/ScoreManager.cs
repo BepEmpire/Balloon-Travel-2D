@@ -32,4 +32,16 @@ public class ScoreManager : MonoBehaviour
         _score += points;
         OnScoreChanged?.Invoke(_score);
     }
+    
+    public int GetScore()
+    {
+        return _score;
+    }
+
+    public void CompleteLevel()
+    {
+        LevelManager.Instance.CompleteLevel(_score);
+        int starsEarned = LevelManager.Instance.CalculateStars(_score);
+        GameOverUI.Instance.ShowGameOver(_score, starsEarned);
+    }
 }

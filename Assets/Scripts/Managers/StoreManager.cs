@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;  
 
 public class StoreManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class StoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] buttonTexts;
     
     private int _currentSkinId;
+    
     private void Start()
     {
         LoadSkinSelection();

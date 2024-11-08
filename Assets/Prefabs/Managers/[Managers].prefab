@@ -82,7 +82,6 @@ Transform:
   - {fileID: 1426328921632982323}
   - {fileID: 1859649480}
   - {fileID: 5024680443305625754}
-  - {fileID: 7050211797760628398}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1837697179386822486
@@ -149,6 +148,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0fb59a364e68ffb40967eb6c105dd061, type: 3}
   - {fileID: 8300000, guid: 2e6825eec2d4fae43bab1f416c549e5d, type: 3}
   - {fileID: 8300000, guid: 7141c35a88fe64c46ab5b81d406c93df, type: 3}
+  - {fileID: 8300000, guid: 9aa69a49da4f45d4199ed3946e7db149, type: 3}
   menuMusic: {fileID: 8300000, guid: a186d77e66eba8748b0d348a66e2c399, type: 3}
   gameMusic: {fileID: 8300000, guid: 2269e971b2fa5dd4d9c55f4335200d5a, type: 3}
 --- !u!1 &2372649464062043240
@@ -540,57 +540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8cabce7a5ba814298051b7c07fbe79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8972696984996542684
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7050211797760628398}
-  - component: {fileID: 1403493563475367518}
-  m_Layer: 0
-  m_Name: StoreManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7050211797760628398
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8972696984996542684}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1837697179386822485}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1403493563475367518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8972696984996542684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2b4a7b6bcb39fa4496e92c375cc1008, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walletManager: {fileID: 6525832450321811397}
-  skinPrices: 000000000a00000014000000
-  skinButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  buttonTexts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  levelsData:
+  - {fileID: 11400000, guid: 237326a6deea68747ae5f8fba529add2, type: 2}
+  - {fileID: 11400000, guid: c37e2b166e154e94db973c48a35f5cf7, type: 2}
+  - {fileID: 11400000, guid: f68428c11b1693a47a89baee2bac2369, type: 2}
+  scoreThresholds: f4010000e8030000dc050000
