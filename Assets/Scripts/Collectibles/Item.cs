@@ -8,9 +8,9 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ScoreManager.Instance.AddScore(scoreValue);
+            ScoreController.Instance.AddScore(scoreValue);
             
-            SoundManager.Instance.PlaySound("Score");
+            AudioController.Instance.PlaySound("Score");
             
             Destroy(gameObject);
         }

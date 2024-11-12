@@ -1,12 +1,26 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WalletManager : MonoBehaviour
 {
+    public static WalletManager Instance;
+    
+    public UnityEvent<int> OnWalletChanged;
+    
     private const string WALLET_KEY = "TotalCoins";
     public int TotalCoins { get; private set; }
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
         TotalCoins = PlayerPrefs.GetInt(WALLET_KEY, 0);
     }
     
@@ -14,6 +28,7 @@ public class WalletManager : MonoBehaviour
     {
         TotalCoins += coins;
         SaveCoins();
+        OnWalletChanged?.Invoke(TotalCoins);
     }
 
     public bool SpendCoins(int amount)
@@ -22,6 +37,7 @@ public class WalletManager : MonoBehaviour
         {
             TotalCoins -= amount;
             SaveCoins();
+            OnWalletChanged?.Invoke(TotalCoins);
             return true;
         }
         else
@@ -36,5 +52,4 @@ public class WalletManager : MonoBehaviour
         PlayerPrefs.SetInt(WALLET_KEY, TotalCoins);
         PlayerPrefs.Save();
     }
-    
 }

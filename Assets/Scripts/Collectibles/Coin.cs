@@ -15,7 +15,7 @@ public class Coin : MonoBehaviour
                 wallet.AddCoins(coinValue);
             }
             
-            SoundManager.Instance.PlaySound("Coin");
+            AudioController.Instance.PlaySound("Coin");
             
             Destroy(gameObject);
         }

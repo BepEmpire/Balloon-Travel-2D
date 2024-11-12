@@ -22,12 +22,12 @@ public class SettingsMenu : MonoBehaviour
 
     private void OnSoundToggleChanged(bool isOn)
     {
-        SoundManager.Instance.SetSound(isOn);
+        AudioController.Instance.SetSound(isOn);
     }
     
     private void OnMusicToggleChanged(bool isOn)
     {
-        SoundManager.Instance.SetMusic(isOn);
+        AudioController.Instance.SetMusic(isOn);
     }
 
     private void OnDestroy()

@@ -5,7 +5,6 @@ public class ScoreIncreaser : MonoBehaviour
 {
 	private void Start()
 	{
-		ScoreManager.Instance.ResetScore();
 		StartCoroutine(IncreaseScoreOverTime());
 	}
 
@@ -14,7 +13,7 @@ public class ScoreIncreaser : MonoBehaviour
 		while (true)
 		{
 			yield return new WaitForSeconds(1f);
-			ScoreManager.Instance.AddScore(1);
+			ScoreController.Instance.AddScore(1);
 		}
 	}
 }

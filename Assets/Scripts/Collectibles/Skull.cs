@@ -6,14 +6,14 @@ public class Skull : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            LifeManager lifeManager = FindObjectOfType<LifeManager>();
+            LifeController lifeController = FindObjectOfType<LifeController>();
             
-            if (lifeManager != null)
+            if (lifeController != null)
             {
-                lifeManager.LoseLife();
+                lifeController.LoseLife();
             }
             
-            SoundManager.Instance.PlaySound("Skull");
+            AudioController.Instance.PlaySound("Skull");
             
             Destroy(gameObject);
         }

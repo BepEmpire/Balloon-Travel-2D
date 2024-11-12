@@ -5,44 +5,42 @@ public class ObjectSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] spawnObjects;
     [SerializeField] private float yRange = 4.5f;
+    [SerializeField] private float minSpawnInterval = 3f;
+    [SerializeField] private float maxSpawnInterval = 5f;
 
+    private bool _isSpawnStart;
+    
     private void Start()
     {
+        _isSpawnStart = true;
         StartCoroutine(SpawnObjects());
+    }
+
+    public void StopSpawn()
+    {
+        _isSpawnStart = false;
+        StopCoroutine(SpawnObjects());
     }
 
     private IEnumerator SpawnObjects()
     {
-        while (true)
+        while (_isSpawnStart)
         {
             yield return new WaitForSeconds(SpawnInterval());
 
             if (spawnObjects.Length > 0)
             {
-                GameObject objectToSpawn = spawnObjects[Random.Range(0, spawnObjects.Length)];
+                GameObject randomObjectToSpawn = spawnObjects[Random.Range(0, spawnObjects.Length)];
                 Vector3 spawnPosition = new Vector3(transform.position.x, Random.Range(-yRange, yRange), transform.position.z);
-                Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
+                GameObject currentItem = Instantiate(randomObjectToSpawn, transform);
+
+                currentItem.transform.position = spawnPosition;
             }
         }
     }
-
+    
     private float SpawnInterval()
     {
-        GameObject objectType = spawnObjects[0];
-        
-        if (objectType.CompareTag("Item"))
-        {
-            return Random.Range(3f, 5f);
-        }
-        else if (objectType.CompareTag("Coin"))
-        {
-            return Random.Range(8f, 12f);
-        }
-        else if (objectType.CompareTag("Skull"))
-        {
-            return Random.Range(15f, 21f);
-        }
-
-        return 1f;
+        return Random.Range(minSpawnInterval, maxSpawnInterval);
     }
 }

@@ -10,18 +10,7 @@ public class DisplayScore : MonoBehaviour
 		_text = GetComponent<TextMeshProUGUI>();
 	}
 
-	private void Start()
-	{
-		SetText(0);
-		ScoreManager.Instance.OnScoreChanged.AddListener(SetText);
-	}
-
-	private void OnDestroy()
-	{
-		ScoreManager.Instance.OnScoreChanged.RemoveListener(SetText);
-	}
-
-	private void SetText(int score)
+	public void SetText(int score)
 	{
 		_text.text = score.ToString();
 	}

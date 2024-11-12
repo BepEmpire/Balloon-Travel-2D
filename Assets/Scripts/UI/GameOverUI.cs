@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class GameOverUI : MonoBehaviour
 {
-    public static GameOverUI Instance;
-    
     [SerializeField] private GameObject tryAgainPanel;
     [SerializeField] private GameObject levelCompletePanel;
     
@@ -20,21 +18,11 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private Sprite yellowStarSprite;
 
     private const int StarsPerLevel = 3;
-    
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public void ShowGameOver(int score, int starsEarned)
     {
+        gameObject.SetActive(true);
+        
         if (starsEarned == 3)
         {
             levelCompletePanel.SetActive(true);
@@ -51,29 +39,39 @@ public class GameOverUI : MonoBehaviour
         }
     }
 
+    public void OnTryAgainPressed()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OnExitToMenuPressed()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(Scenes.MenuScene.ToString());
+    }
+
+    public void OnNextLevelPressed()
+    {
+        Time.timeScale = 1.0f;
+        int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextLevelIndex = currentLevelIndex + 1;
+
+        if (nextLevelIndex > LevelManager.Instance.GetTotalLevels())
+        {
+            SceneManager.LoadScene(currentLevelIndex);
+        }
+        else
+        {
+            SceneManager.LoadScene(nextLevelIndex);
+        }
+    }
+
     private void UpdateStarImages(Image[] starImages, int starsEarned)
     {
         for (int i = 0; i < StarsPerLevel; i++)
         {
             starImages[i].sprite = i < starsEarned ? yellowStarSprite : grayStarSprite;
         }
-    }
-
-    public void OnTryAgainPressed()
-    {
-        Time.timeScale = 1.0f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    
-    public void OnExitToMenuPressed()
-    {
-        Time.timeScale = 1.0f;
-        LevelManager.Instance.LoadLevel(0);
-    }
-
-    public void OnNextLevelPressed()
-    {
-        Time.timeScale = 1.0f;
-        LevelManager.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
