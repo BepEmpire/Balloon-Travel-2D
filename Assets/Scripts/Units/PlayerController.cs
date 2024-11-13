@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -21,11 +20,21 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && transform.position.y < maxHeight)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            _balloonRb.velocity = new Vector2(_balloonRb.velocity.x, floatForce);
+            PlayerJump();
         }
         
+        KeepBoundaries();
+    }
+
+    public void PlayerJump()
+    { 
+        _balloonRb.velocity = new Vector2(_balloonRb.velocity.x, floatForce);
+    }
+
+    private void KeepBoundaries()
+    {
         if (transform.position.y > maxHeight)
         {
             transform.position = new Vector3(transform.position.x, maxHeight, transform.position.z);
