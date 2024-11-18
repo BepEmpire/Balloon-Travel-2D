@@ -17,7 +17,7 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private Sprite grayStarSprite;
     [SerializeField] private Sprite yellowStarSprite;
 
-    private const int StarsPerLevel = 3;
+    private const int STARS_PER_LEVEL = 3;
 
     public void ShowGameOver(int score, int starsEarned)
     {
@@ -25,35 +25,29 @@ public class GameOverUI : MonoBehaviour
         
         if (starsEarned == 3)
         {
-            levelCompletePanel.SetActive(true);
-            tryAgainPanel.SetActive(false);
-            levelCompleteScoreText.text = "Score: " + score;
-            UpdateStarImages(levelCompleteStars, starsEarned);
+            LevelCompleted(score, starsEarned);
         }
         else
         {
-            tryAgainPanel.SetActive(true);
-            levelCompletePanel.SetActive(false);
-            tryAgainScoreText.text = "Score: " + score;
-            UpdateStarImages(tryAgainStars, starsEarned);
+            TryAgain(score, starsEarned);
         }
     }
 
     public void OnTryAgainPressed()
     {
-        Time.timeScale = 1.0f;
+        SetTimeScaleToOne();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OnExitToMenuPressed()
     {
-        Time.timeScale = 1.0f;
+        SetTimeScaleToOne();
         SceneManager.LoadScene(Scenes.MenuScene.ToString());
     }
 
     public void OnNextLevelPressed()
     {
-        Time.timeScale = 1.0f;
+        SetTimeScaleToOne();
         int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
         int nextLevelIndex = currentLevelIndex + 1;
 
@@ -67,11 +61,32 @@ public class GameOverUI : MonoBehaviour
         }
     }
 
+    private void LevelCompleted(int score, int starsEarned)
+    {
+        levelCompletePanel.SetActive(true);
+        tryAgainPanel.SetActive(false);
+        levelCompleteScoreText.text = "Score: " + score;
+        UpdateStarImages(levelCompleteStars, starsEarned);
+    }
+
+    private void TryAgain(int score, int starsEarned)
+    {
+        tryAgainPanel.SetActive(true);
+        levelCompletePanel.SetActive(false);
+        tryAgainScoreText.text = "Score: " + score;
+        UpdateStarImages(tryAgainStars, starsEarned);
+    }
+
     private void UpdateStarImages(Image[] starImages, int starsEarned)
     {
-        for (int i = 0; i < StarsPerLevel; i++)
+        for (int i = 0; i < STARS_PER_LEVEL; i++)
         {
             starImages[i].sprite = i < starsEarned ? yellowStarSprite : grayStarSprite;
         }
+    }
+
+    private void SetTimeScaleToOne()
+    {
+        Time.timeScale = 1.0f;
     }
 }

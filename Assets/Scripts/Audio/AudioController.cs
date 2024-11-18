@@ -10,7 +10,7 @@ public class AudioController : MonoBehaviour
     
     [Header("Sound and Music Clips")]
     [SerializeField] private AudioClip[] sounds;
-    
+
     private void Awake()
     {
         if (Instance == null)
@@ -31,6 +31,12 @@ public class AudioController : MonoBehaviour
         PlayerPrefs.SetInt("SoundOn", isOn ? 1 : 0);
     }
 
+    public void SetMusic(bool isOn)
+    {
+        musicSource.mute = !isOn;
+        PlayerPrefs.SetInt("MusicOn", isOn ? 1 : 0);
+    }
+
     public void PlaySound(string soundName)
     {
         AudioClip clip = FindAudioClipByName(soundName);
@@ -44,7 +50,7 @@ public class AudioController : MonoBehaviour
             Debug.LogWarning($"AudioClip {soundName} not found or AudioSource is mute");
         }
     }
-    
+
     private AudioClip FindAudioClipByName(string soundName)
     {
         foreach (AudioClip audioClip in sounds)
@@ -57,13 +63,7 @@ public class AudioController : MonoBehaviour
         
         return null;
     }
-    
-    public void SetMusic(bool isOn)
-    {
-        musicSource.mute = !isOn;
-        PlayerPrefs.SetInt("MusicOn", isOn ? 1 : 0);
-    }
-    
+
     private void LoadAudioSettings()
     {
         bool soundOn = PlayerPrefs.GetInt("SoundOn", 1) == 1;

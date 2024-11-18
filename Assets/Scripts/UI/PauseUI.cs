@@ -16,7 +16,7 @@ public class PauseUI : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 1.0f;
+            SetTimeScaleToOne();
             gameObject.SetActive(false);
         }
     }
@@ -28,13 +28,18 @@ public class PauseUI : MonoBehaviour
 
     public void RestartGame()
     {
-        Time.timeScale = 1.0f;
+        SetTimeScaleToOne();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Exit()
     {
-        Time.timeScale = 1.0f;
+        SetTimeScaleToOne();
         SceneManager.LoadScene(Scenes.MenuScene.ToString());
+    }
+
+    private void SetTimeScaleToOne()
+    {
+        Time.timeScale = 1.0f;
     }
 }

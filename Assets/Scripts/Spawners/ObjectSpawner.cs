@@ -30,17 +30,26 @@ public class ObjectSpawner : MonoBehaviour
 
             if (spawnObjects.Length > 0)
             {
-                GameObject randomObjectToSpawn = spawnObjects[Random.Range(0, spawnObjects.Length)];
-                Vector3 spawnPosition = new Vector3(transform.position.x, Random.Range(-yRange, yRange), transform.position.z);
-                GameObject currentItem = Instantiate(randomObjectToSpawn, transform);
+                Vector3 spawnPosition = new Vector3(transform.position.x, RandomYRange(), transform.position.z);
+                GameObject currentItem = Instantiate(GetRandomObject(), transform);
 
                 currentItem.transform.position = spawnPosition;
             }
         }
     }
-    
+
     private float SpawnInterval()
     {
         return Random.Range(minSpawnInterval, maxSpawnInterval);
+    }
+    
+    private float RandomYRange()
+    {
+        return Random.Range(-yRange, yRange);
+    }
+
+    private GameObject GetRandomObject()
+    {
+        return spawnObjects[Random.Range(0, spawnObjects.Length)];
     }
 }

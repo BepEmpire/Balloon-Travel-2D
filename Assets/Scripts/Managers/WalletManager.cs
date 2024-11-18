@@ -40,11 +40,9 @@ public class WalletManager : MonoBehaviour
             OnWalletChanged?.Invoke(TotalCoins);
             return true;
         }
-        else
-        {
-            Debug.Log("Not enough coins to complete this purchase");
-            return false;
-        }
+        
+        Debug.Log("Not enough coins to complete this purchase");
+        return false;
     }
 
     private void SaveCoins()
