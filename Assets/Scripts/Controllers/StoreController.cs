@@ -5,7 +5,7 @@ using TMPro;
 public class StoreController : MonoBehaviour
 {
     [SerializeField] private int[] skinPrices = { 0, 500, 1000 };
-    [SerializeField] private GameObject[] skinButtons;
+    [SerializeField] private Button[] skinButtons;
     [SerializeField] private TextMeshProUGUI[] buttonTexts;
     
     private int _currentSkinId;
@@ -61,7 +61,7 @@ public class StoreController : MonoBehaviour
             bool isPurchased = i == 0 || PlayerPrefs.GetInt("SkinPurchased_" + i, 0) == 1;
             bool isSelected = i == _currentSkinId;
             
-            skinButtons[i].GetComponent<Button>().interactable = isPurchased || WalletManager.Instance.TotalCoins >= skinPrices[i];
+            skinButtons[i].interactable = isPurchased || WalletManager.Instance.TotalCoins >= skinPrices[i];
             
             if (isSelected)
             {

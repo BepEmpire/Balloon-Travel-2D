@@ -2917,9 +2917,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skinPrices: 00000000fa000000f4010000
   skinButtons:
-  - {fileID: 85705490}
-  - {fileID: 601428833}
-  - {fileID: 2128498474}
+  - {fileID: 85705492}
+  - {fileID: 601428835}
+  - {fileID: 2128498476}
   buttonTexts:
   - {fileID: 635225769}
   - {fileID: 796049084}
