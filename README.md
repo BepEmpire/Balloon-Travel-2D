@@ -10,7 +10,7 @@
 
 ###
 
-<p align="left">🔷 Control the Balloon: Tap the screen to keep your balloon afloat and navigate through obstacles (💀). <br><br>🔶 Collect Crowns & Stars: Earn points to progress through the game!<br><br> Unlock Level 2: Score 1500 points in Level 1! 🔓<br> Unlock Level 3: Score 2000 points in Level 2! 🏆<br> Complete Level 3 with 3 Stars: Achieve 2500 points in Level 3! 🌟🌟🌟<br><br>🪙 Gather Coins: Collect shiny coins to buy awesome balloon skins in the store! 💰🎨</p>
+<p align="left">🔷 Control the Balloon: Tap the screen to keep your balloon afloat and navigate through obstacles (💀). <br><br>🔶 Collect Crowns & Stars: Earn points to progress through the game!<br><br>🪙 Gather Coins: Collect shiny coins to buy awesome balloon skins in the store! 💰🎨</p>
 
 ###
 
